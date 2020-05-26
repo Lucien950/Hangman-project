@@ -1,0 +1,92 @@
+<!--
+Richard Wang 5/25
+Main page for Hangman Project
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="master.css">
+        <!-- Bootstrap 4 CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <title>Hangman</title>
+    </head>
+    <body>
+        <nav class = "navbar navbar-expand-sm navbar-dark bg-dark">
+            <!--Brand-->
+            <a href="#" class = "navbar-brand">Richard's Hangman Game</a>
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu"><span class="navbar-toggler-icon"></span></button>
+
+            <!--Links-->
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <div class="navbar-nav">
+                    <a href="splash.html" class = "nav-item nav-link">Home</a>
+                    <a href="#" class = "nav-item nav-link active">Play!</a>
+                    <a href="about.html" class = "nav-item nav-link ">About</a>
+                    <a href="help.html" class = "nav-item nav-link ">Help</a>
+                </div>
+            </div>
+        </nav>
+        <div id = "overflow-catch" class="container">
+
+            <!--Title-->
+            <h1 class="text-center title">HANGMAN</h1>
+
+            <div class = container-fluid>
+                <div class = "row" style="flex-wrap:wrap-reverse">
+                    <!--keyboard and wrongs-->
+                    <div class = "col">
+                        <div id="keyboard"></div>
+                        <p>Wrong Guesses: <span id='mistakes'>0</span> of <span id='maxWrong'></span></p>
+                        <p>W/L Ratio (%): <span id = "ratio">0</span>%</p>
+                    </div>
+                    <!--Picture-->
+                    <div class = "col">
+                        <img id='hangmanPic' src="./images/0.png" alt="" style = "filter: brightness(0) invert(1);">
+                        <p style="text-align:right;">Player: <span id="playerName"></span></p>
+                    </div>
+                </div>
+                <!--Guess the Word-->
+                <div class = "row text-center">
+                    <p class = "mx-auto" style="color:white;margin-top:1em;">Guess the word</p>
+                </div>
+                <!--Blank Spaces and Filled words-->
+                <div class = "row">
+                    <p id="wordSpotlight" class = "mx-auto">The word to be guessed goes here</p>
+                </div>
+            </div>
+
+            <div class = "popup" id = "win" style = "bottom: -4em;">
+                <svg class="bi bi-award-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path d="M8 0l1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/> <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/></svg>
+                <span id = "popupText">You've Won!</span></div>
+            <div class = "popup" id = "lose" style = "bottom: -4em;">
+                <svg class="bi bi-exclamation-octagon-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+                <span id = "popupText">You Lost!</span></div>
+        </div>
+
+        <div id = "background"></div>
+        <div id = "namePopup">
+            <div id = "nameTri" >
+                <svg class="bi bi-exclamation-triangle-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/> </svg>
+            </div>
+            <h1>What is Your Name?</h1>
+            <form id = "nameForm" class="input-group" action="index.html" method="post">
+                <input class="form-control" type="text" name="name" value="" placeholder="Enter Name Here..." required autocomplete="off">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!--Import Javascript Code-->
+        <script src='hangman.js'></script>
+        <script src = "index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+#navbarMenu div{
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+}
+#navbarMenu div a{
+    flex:auto;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: .25rem solid transparent;
+    transition: color 0.2s;
+    transition: border-bottom 0.2s;
+}
+.active{
+    border-bottom: .25rem solid white !important;
+}
+#navbarMenu div a:hover{
+    border-bottom: .25rem solid #ffffff80 !important;
+}
